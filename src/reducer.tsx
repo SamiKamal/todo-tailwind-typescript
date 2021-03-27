@@ -18,6 +18,18 @@ const reducer = (todo: State, action: Actions): State => {
         const newTodo: Todo[] = todo.todoList.filter(el => el.id !== id)
         
         return {...todo, todoList: newTodo}
+    } else if (type === "EDIT"){
+        const newTodo: Todo[] = todo.todoList.map(el => {
+            console.log(id, el.id);
+            
+            if (el.id === id){
+                el.text = text
+            }
+            return el;
+        })
+        console.log(newTodo);
+        
+        return {...todo, todoList: newTodo};
     }
     return todo;
 }
