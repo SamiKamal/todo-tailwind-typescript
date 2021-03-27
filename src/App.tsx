@@ -4,8 +4,8 @@ import TodoItem from './TodoItem';
 import reducer from './reducer'
 
 export interface Todo{
-    text: string;
-    id: string;
+    text: string | undefined;
+    id: string | undefined;
 }
 
 type State = {
@@ -41,10 +41,10 @@ const App: React.FC = () => {
             <a onClick={handleAdd} className="rounded-full bg-gray-800 w-10 h-10 flex items-center justify-center text-gray-50 text-3xl cursor-pointer hover:bg-gray-900 shadow-md hover:-translate-y-0.5 hover:shadow-lg transform transition duration-300 ease-out active:outline-black">+</a>
         </div>
 
-        {state.todoList.map(el => (
-            <TodoItem text={el.text} key={el.id} data-id={el.id} dispatch={dispatch}/>
+        {state.todoList.map(el => {
+            return <TodoItem text={el.text} key={el.id} itemId={el.id} dispatch={dispatch}/>
 
-        ))}
+        })}
     </div>
     );
 };
