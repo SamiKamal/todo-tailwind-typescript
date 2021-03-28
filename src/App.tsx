@@ -6,6 +6,7 @@ import reducer from './reducer'
 export interface Todo{
     text: string | undefined;
     id: string | undefined;
+    completed?: Boolean;
 }
 
 type State = {
@@ -42,7 +43,7 @@ const App: React.FC = () => {
         </div>
 
         {state.todoList.map(el => {
-            return <TodoItem text={el.text} key={el.id} itemId={el.id} dispatch={dispatch}/>
+            return <TodoItem text={el.text} key={el.id} completed={el.completed} itemId={el.id} dispatch={dispatch}/>
 
         })}
     </div>

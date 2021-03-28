@@ -27,9 +27,17 @@ const reducer = (todo: State, action: Actions): State => {
             }
             return el;
         })
-        console.log(newTodo);
         
         return {...todo, todoList: newTodo};
+    } else if (type === "MARK"){
+        const newTodo: Todo[] = todo.todoList.map(el => {
+            if (el.id === id){
+                el.completed = !el.completed
+            }
+            return el
+        })
+
+        return {...todo, todoList: newTodo}
     }
     return todo;
 }

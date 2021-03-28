@@ -42,9 +42,14 @@ const TodoItem: React.FC<Props> = ({text, itemId, completed, dispatch}) => {
                 editInputRefT.classList.add('hidden')        
                 inputEditRefT.value = ''
             }
-        } 
+        }
         
     }
+
+    const handleCompleted = (e: React.MouseEvent<HTMLParagraphElement>) => {
+        dispatch({type: "MARK", id: itemId})
+    }
+    
     return (
         <div className="h-auto grid">
             <div className="w-9/12 md:w-6/12 m-auto mt-5 block bg-gray-700 shadow hover:shadow-md transition duration-300 transform hover:-translate-y-0.5 pt-5 pb-5 pr-10 pl-10 mb-3 rounded-md">
@@ -54,7 +59,7 @@ const TodoItem: React.FC<Props> = ({text, itemId, completed, dispatch}) => {
                         <a onClick={handleEditDispatch} className="rounded-full bg-gray-800 w-30 h-30 pr-4 pl-4 flex items-center m-0 justify-center text-gray-50 cursor-pointer hover:bg-gray-900 shadow-md hover:-translate-y-0.5 hover:shadow-lg transform transition duration-300 ease-out active:outline-black">Submit</a>
                         
                     </div>
-                    <h4 ref={todoTextRef} className="text-gray-50">{text}</h4>
+                    <h4 onClick={handleCompleted} ref={todoTextRef} className={`text-gray-50 cursor-pointer ${completed ? 'line-through' : ''}`}>{text}</h4>
                     <div className="flex items-center font-light">
                         <p onClick={(e) => handleDelete(e, itemId)} className="text-red-300 mr-4 cursor-pointer">Delete</p>
                         <p onClick={(e) => handleEditStyle(e, itemId)} className="text-blue-300 cursor-pointer">Edit</p>

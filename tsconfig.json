@@ -7,7 +7,7 @@
       "DOM.Iterable",
       "ESNext"
     ],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "outDir": "public",
     "rootDir": "./src",
     "strict": true,
