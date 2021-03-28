@@ -24,7 +24,7 @@ const App: React.FC = () => {
         document.querySelector('body')?.classList.add('bg-gray-600')
     }, [])
 
-    const handleAdd = (e: (React.KeyboardEvent<HTMLInputElement> & React.MouseEvent<HTMLAnchorElement, MouseEvent>)) => {
+    const handleAdd = (e: (React.KeyboardEvent<HTMLInputElement> & React.MouseEvent<HTMLButtonElement, MouseEvent>)) => {
         if (e.key === 'Enter' || e.type === 'click') {
             let element = inputRef.current;
             if (element?.value) {
@@ -46,7 +46,7 @@ const App: React.FC = () => {
         <div className="container mx-auto pt-20">
         <div className="w-auto flex justify-center">
             <input ref={inputRef} onKeyDown={handleAdd} type="text" placeholder="What do you want to add" className="border-b-2 border-gray-800 pt-2.5 pb-2.5 pr-5 pl-5 mr-10 bg-gray-600 text-gray-50"/>
-            <a onClick={handleAdd} className="rounded-full bg-gray-800 w-10 h-10 flex items-center justify-center text-gray-50 text-3xl cursor-pointer hover:bg-gray-900 shadow-md hover:-translate-y-0.5 hover:shadow-lg transform transition duration-300 ease-out active:outline-black">+</a>
+            <button onClick={handleAdd} className="rounded-full bg-gray-800 w-10 h-10 flex items-center justify-center text-gray-50 text-3xl cursor-pointer hover:bg-gray-900 shadow-md hover:-translate-y-0.5 hover:shadow-lg transform transition duration-300 ease-out active:outline-black">+</button>
         </div>
 
         {todoLocalStorage.length &&

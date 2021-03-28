@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useRef } from 'react'
+import React, { useRef } from 'react'
 import {Actions} from './reducer'
 interface Props {
     text?: string;
@@ -30,7 +30,7 @@ const TodoItem: React.FC<Props> = ({text, itemId, completed, dispatch}) => {
     }
 
 
-    const handleEditDispatch = (e: (React.KeyboardEvent<HTMLInputElement> & React.MouseEvent<HTMLAnchorElement, MouseEvent>)) => {
+    const handleEditDispatch = (e: (React.KeyboardEvent<HTMLInputElement> & React.MouseEvent<HTMLButtonElement, MouseEvent>)) => {
         const inputEditRefT = inputEditRef.current as unknown as HTMLInputElement
         const editInputRefT = editParentRef.current as unknown as HTMLDivElement
         const todoTextRefT = todoTextRef.current as unknown as HTMLHeadingElement
@@ -56,7 +56,7 @@ const TodoItem: React.FC<Props> = ({text, itemId, completed, dispatch}) => {
                 <div className="flex justify-between items-center">
                     <div className="flex hidden" ref={editParentRef}>
                         <input ref={inputEditRef} onKeyDown={handleEditDispatch} type="text" placeholder="What do you want to add" className="border-b-2 border-gray-800 pt-2.5 pb-2.5 pr-5 pl-5 mr-10 bg-gray-700 text-gray-50"/>
-                        <a onClick={handleEditDispatch} className="rounded-full bg-gray-800 w-30 h-30 pr-4 pl-4 flex items-center m-0 justify-center text-gray-50 cursor-pointer hover:bg-gray-900 shadow-md hover:-translate-y-0.5 hover:shadow-lg transform transition duration-300 ease-out active:outline-black">Submit</a>
+                        <button onClick={handleEditDispatch} className="rounded-full bg-gray-800 w-30 h-30 pr-4 pl-4 flex items-center m-0 justify-center text-gray-50 cursor-pointer hover:bg-gray-900 shadow-md hover:-translate-y-0.5 hover:shadow-lg transform transition duration-300 ease-out active:outline-black">Submit</button>
                         
                     </div>
                     <h4 onClick={handleCompleted} ref={todoTextRef} className={`text-gray-50 cursor-pointer ${completed ? 'line-through' : ''}`}>{text}</h4>
