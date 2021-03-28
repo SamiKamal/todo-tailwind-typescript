@@ -13,12 +13,13 @@ type State = {
     todoList: Todo[];
 }
 let initialState: State = {
-    todoList: []
+    todoList: JSON.parse(localStorage.getItem('todo') || '') || []
 };
 
 const App: React.FC = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const inputRef: React.LegacyRef<HTMLInputElement>  = useRef(null)
+    let todoLocalStorage: Todo[] & string = JSON.parse(localStorage.getItem('todo') || '')
     useEffect(() => {
         document.querySelector('body')?.classList.add('bg-gray-600')
     }, [])
@@ -35,6 +36,12 @@ const App: React.FC = () => {
         
     }
 
+    useEffect(() => {
+        
+    }, [])
+    
+    localStorage.setItem('todo', JSON.stringify(state.todoList))
+    todoLocalStorage = JSON.parse(localStorage.getItem('todo') || '')
     return (
         <div className="container mx-auto pt-20">
         <div className="w-auto flex justify-center">
@@ -42,10 +49,11 @@ const App: React.FC = () => {
             <a onClick={handleAdd} className="rounded-full bg-gray-800 w-10 h-10 flex items-center justify-center text-gray-50 text-3xl cursor-pointer hover:bg-gray-900 shadow-md hover:-translate-y-0.5 hover:shadow-lg transform transition duration-300 ease-out active:outline-black">+</a>
         </div>
 
-        {state.todoList.map(el => {
+        {todoLocalStorage.length &&
+        todoLocalStorage.map(el => {
             return <TodoItem text={el.text} key={el.id} completed={el.completed} itemId={el.id} dispatch={dispatch}/>
-
-        })}
+        })
+       }
     </div>
     );
 };

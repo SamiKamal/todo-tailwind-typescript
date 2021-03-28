@@ -11,7 +11,6 @@ const reducer = (todo: State, action: Actions): State => {
     const {type, text, id} = action
     if (type === "ADD"){
         let singleTodo: Todo = {text: text, id: id}
-        console.log(todo);
         return {...todo, todoList: [...todo.todoList, singleTodo]}
    
     } else if (type === "REMOVE"){
@@ -20,7 +19,6 @@ const reducer = (todo: State, action: Actions): State => {
         return {...todo, todoList: newTodo}
     } else if (type === "EDIT"){
         const newTodo: Todo[] = todo.todoList.map(el => {
-            console.log(id, el.id);
             
             if (el.id === id){
                 el.text = text
